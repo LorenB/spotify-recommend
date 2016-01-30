@@ -48,15 +48,11 @@ app.get("/search/:name", function (req, res) {
            var artistsCompleted =0;
            var checkComplete = function() {
                if (artistsCompleted === artist.related.length) {
-                   console.log(artistsCompleted);
-                   console.log(artist);
                    res.json(artist);                   
                }
            }           
-        //   console.log(artist.related);
         
            artist.related.forEach(function (relatedArtist, index) {
-            //   console.log(relatedArtist.name)
                /*Make call to top tracks endpoint. SEE external documentation:
                https://developer.spotify.com/web-api/get-artists-top-tracks/
                */               
@@ -67,8 +63,6 @@ app.get("/search/:name", function (req, res) {
                    artist.related[index].tracks = item.tracks;
                    artistsCompleted += 1;
                    checkComplete();
-                //   console.log('first track for', relatedArtist.name, ':', item.tracks[0]['name'])
-                   
                });
            });
            
